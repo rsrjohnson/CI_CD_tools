@@ -26,7 +26,9 @@ print(DESTINATION_BRANCH)
 
 #url = f"https://api.github.com/api/v3/repos/{REPO_OWNER}/{REPO_SLUG}/pulls"
 
-url = f"https://api.github.com/api/v3/repos/{REPO_SLUG}/pulls"
+#url = f"https://api.github.com/api/v3/repos/{REPO_SLUG}/pulls"
+
+url=f"https://api.github.com/repos/{REPO_SLUG}/pulls"
 
 print(url)
 
