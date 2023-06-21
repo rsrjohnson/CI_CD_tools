@@ -25,7 +25,8 @@ url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_SLUG}/pulls"
 
 
 headers = {
-    "Accept": "application/vnd.github+json",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
     "Authorization": f"Bearer {AUTH_TOKEN}"
     }
 
