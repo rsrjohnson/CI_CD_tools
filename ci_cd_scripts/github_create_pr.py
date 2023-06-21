@@ -21,11 +21,15 @@ SOURCE_BRANCH = args.source
 DESTINATION_BRANCH = args.destination
 
 
+print(SOURCE_BRANCH)
+print(DESTINATION_BRANCH)
+
 url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_SLUG}/pulls"
 
+print(url)
 
 headers = {
-    "Accept": "application/vnd.github+json",
+    "Accept": "application/vnd.github.v3+json",
     "Authorization": f"Bearer {AUTH_TOKEN}"
     }
 
