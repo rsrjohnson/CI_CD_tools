@@ -45,3 +45,4 @@ response = requests.request(
     headers=headers
     )
 
+print(response.status_code)
