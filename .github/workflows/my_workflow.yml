@@ -26,7 +26,7 @@ jobs:
           run: pip install requests
             
         - name: Create PR
-          run: python ci_cd_scripts/create_pr.py --repo_owner ${{ github.repository_owner }}
+          run: python ci_cd_scripts/github_create_pr.py --repo_owner ${{ github.repository_owner }}
                                                   --repo_slug ${{ github.repository }}
                                                   --auth_token ${{ secrets.MY_GH_TOKEN }}
                                                   --source ${{ github.ref }}
