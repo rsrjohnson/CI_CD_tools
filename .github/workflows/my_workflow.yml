@@ -30,4 +30,4 @@ jobs:
                                                   --repo_slug ${{ github.repository }}
                                                   --auth_token ${{ secrets.MY_GH_TOKEN }}
                                                   --source ${{ github.ref }}
-                                                  --destination int-dev
+                                                  --destination refs/heads/int-dev
