@@ -6,7 +6,6 @@ import argparse
 parser = argparse.ArgumentParser()
 
 # Adding Arguments
-parser.add_argument('--repo_owner', type= str)
 parser.add_argument('--repo_slug', type= str)
 parser.add_argument('--auth_token', type= str)
 parser.add_argument('--source', type= str)
@@ -14,7 +13,6 @@ parser.add_argument('--destination', type= str)
 
 args = parser.parse_args()
 
-REPO_OWNER = args.repo_owner
 REPO_SLUG = args.repo_slug
 AUTH_TOKEN = args.auth_token
 SOURCE_BRANCH = args.source
@@ -24,9 +22,6 @@ DESTINATION_BRANCH = args.destination
 print(SOURCE_BRANCH)
 print(DESTINATION_BRANCH)
 
-#url = f"https://api.github.com/api/v3/repos/{REPO_OWNER}/{REPO_SLUG}/pulls"
-
-#url = f"https://api.github.com/api/v3/repos/{REPO_SLUG}/pulls"
 
 url=f"https://api.github.com/repos/{REPO_SLUG}/pulls"
 
