@@ -30,7 +30,7 @@ print(url)
 
 headers = {
     "Accept": "application/vnd.github.v3+json",
-    "Authorization": f"Bearer {AUTH_TOKEN}"
+    "Authorization": f"token {AUTH_TOKEN}"
     }
 
 
