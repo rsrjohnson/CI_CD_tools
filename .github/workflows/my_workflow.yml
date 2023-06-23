@@ -31,4 +31,4 @@ jobs:
           run: python ci_cd_scripts/github_create_pr.py --repo_slug ${{ github.repository }}
                                                   --auth_token ${{ secrets.MY_GH_TOKEN }}
                                                   --source ${{ github.ref }}
-                                                  --destination $DESTINATION_BRANCH
+                                                  --destination ${{ env.DESTINATION_BRANCH }}
