@@ -59,26 +59,26 @@ if response.ok:
             print('Pull request already exists with the same source and target branches.')
             pull_request_data = response.json()
             print(json.dumps(pull_request_data))
-            exit()
+            
+        else:
 
+            payload = json.dumps(
+                {
+                    "title": f"Auto PR from {SOURCE_BRANCH} to {DESTINATION_BRANCH}",
+                    "head": SOURCE_BRANCH,
+                    "base": DESTINATION_BRANCH
+                }
+            )
 
-payload = json.dumps(
-    {
-        "title": f"Auto PR from {SOURCE_BRANCH} to {DESTINATION_BRANCH}",
-        "head": SOURCE_BRANCH,
-        "base": DESTINATION_BRANCH
-    }
-)
+            response = requests.request(
+                "POST",
+                url,
+                data=payload,
+                headers=headers
+                )
 
-response = requests.request(
-    "POST",
-    url,
-    data=payload,
-    headers=headers
-    )
-
-if response.status_code == 201:
-    pull_request_data = response.json()
-    print(json.dumps(pull_request_data))
-else:
-    print(f'Failed to create pull request: {response.text}')
+            if response.status_code == 201:
+                pull_request_data = response.json()
+                print(json.dumps(pull_request_data))
+            else:
+                print(f'Failed to create pull request: {response.text}')
