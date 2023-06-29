@@ -36,7 +36,7 @@ headers = {
 
 # Check if the pull request already exists with the same source and target branches
 params={
-        'head': SOURCE_BRANCH,
+        'head': f"rsrjohnson:{SOURCE_BRANCH}",
         'base': DESTINATION_BRANCH
     }
 
