@@ -48,4 +48,8 @@ response = requests.request(
     headers=headers
     )
 
-print(response.status_code)
+if response.status_code == 201:
+    pull_request_data = response.json()
+    print(json.dumps(pull_request_data))
+else:
+    print(f'Failed to create pull request: {response.text}')

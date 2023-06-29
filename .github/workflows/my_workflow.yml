@@ -28,7 +28,19 @@ jobs:
           run: pip install requests
             
         - name: Create PR
+          id: create-pr
           run: python ci_cd_scripts/github_create_pr.py --repo_slug ${{ github.repository }}
                                                   --auth_token ${{ secrets.MY_GH_TOKEN }}
                                                   --source ${{ github.ref }}
                                                   --destination ${{ vars.DESTINATION_BRANCH }}
+
+        - name: Get Pull Request Number
+          id: pr-number
+          run: |
+            echo "::set-output name=pr_number::$(python -c "import json; print(json.loads('$PR_DATA')['number'])")"
+          env:
+            PR_DATA: ${{ steps.create-pr.outputs.pull_request_data }}
+
+        - name: Use Pull Request Number
+          run: |
+            echo "The pull request number is ${{ steps.pr-number.outputs.pr_number }}"
