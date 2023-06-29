@@ -53,6 +53,7 @@ response = requests.request(
 
 # If a pull request already exists, print a message and exit
 if response.ok:
+    print("I am here")
     pull_requests = response.json()
     for pull_request in pull_requests:
         #if pull_request['head']['ref'] == SOURCE_BRANCH and pull_request['base']['ref'] == DESTINATION_BRANCH:
