@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 REPO_SLUG = args.repo_slug
 AUTH_TOKEN = args.auth_token
-SOURCE_BRANCH = args.source
+SOURCE_BRANCH = "feature/auto_pr"
 DESTINATION_BRANCH = args.destination
 
 
