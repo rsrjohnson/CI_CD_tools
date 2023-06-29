@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 REPO_SLUG = args.repo_slug
 AUTH_TOKEN = args.auth_token
-SOURCE_BRANCH = "feature/auto_pr"
+SOURCE_BRANCH = args.source
 DESTINATION_BRANCH = args.destination
 
 
@@ -57,7 +57,7 @@ if response.ok:
     for pull_request in pull_requests:
         if pull_request['head']['ref'] == SOURCE_BRANCH and pull_request['base']['ref'] == DESTINATION_BRANCH:
             print('Pull request already exists with the same source and target branches.')
-            pull_request_data = response.json()
+            pull_request_data = response.json()["number"]
             print(json.dumps(pull_request_data))
             
         else:
@@ -78,7 +78,7 @@ if response.ok:
                 )
 
             if response.status_code == 201:
-                pull_request_data = response.json()
-                print(json.dumps(pull_request_data))
+                pull_request_number = response.json()["number"]
+                print(pull_request_number)
             else:
                 print(f'Failed to create pull request: {response.text}')

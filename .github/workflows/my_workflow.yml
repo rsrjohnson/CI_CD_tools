@@ -37,9 +37,9 @@ jobs:
         - name: Get Pull Request Number
           id: pr-number
           run: |
-            echo "::set-output name=pr_number::$(python -c "import json; print(json.loads('$PR_DATA')['number'])")"
+            echo "::set-output name=pr_number::$(python -c "print('$PR_NUMBER')")"
           env:
-            PR_DATA: ${{ steps.create-pr.outputs.pull_request_data }}
+            PR_NUMBER: ${{ steps.create-pr.outputs.pull_request_number }}
 
         - name: Use Pull Request Number
           run: |
