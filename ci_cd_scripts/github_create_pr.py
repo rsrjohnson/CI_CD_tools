@@ -33,6 +33,35 @@ headers = {
     }
 
 
+
+# Check if the pull request already exists with the same source and target branches
+params={
+        'head': SOURCE_BRANCH,
+        'base': DESTINATION_BRANCH
+    }
+
+
+
+response = requests.request(
+    "POST",
+    url,
+    data=params,
+    headers=headers
+    )
+
+
+
+# If a pull request already exists, print a message and exit
+if response.ok:
+    pull_requests = response.json()
+    for pull_request in pull_requests:
+        if pull_request['head']['ref'] == SOURCE_BRANCH and pull_request['base']['ref'] == DESTINATION_BRANCH:
+            print('Pull request already exists with the same source and target branches.')
+            pull_request_data = response.json()
+            print(json.dumps(pull_request_data))
+            exit()
+
+
 payload = json.dumps(
     {
         "title": f"Auto PR from {SOURCE_BRANCH} to {DESTINATION_BRANCH}",
