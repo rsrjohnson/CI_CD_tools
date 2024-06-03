@@ -17,7 +17,9 @@ jobs:
       # Steps represent a sequence of tasks that will be executed as part of the job
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        - uses: actions/checkout@v4
+        - name: Checkout code
+          uses: actions/checkout@v4
+
         - name: Set up Python 3.10
           uses: actions/setup-python@v4
           with:
@@ -26,7 +28,6 @@ jobs:
         - name: Install dependencies
           run: |
             python -m pip install --upgrade pip
-            python -m pip install pytest
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
 
@@ -36,15 +37,7 @@ jobs:
         name: development
       steps:
         - name: Checkout code
-          uses: actions/checkout@v2
-        
-        - name: Set up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: 3.10.6
-  
-        - name: Install requests
-          run: pip install requests
+          uses: actions/checkout@v4
             
         - name: Create PR
           id: create-pr
@@ -77,5 +70,4 @@ jobs:
         - uses: actions/checkout@v4
         - name: Run tests
           run: |
-            python -m pip install pytest
             pytest
