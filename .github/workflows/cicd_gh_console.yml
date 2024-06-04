@@ -53,4 +53,4 @@ jobs:
             GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
           run: |
             PR_NUMBER=$(gh pr list --state "open" --json number --jq '.[0].number')
-            gh pr merge $PR_NUMBER
+            gh pr merge $PR_NUMBER --merge
