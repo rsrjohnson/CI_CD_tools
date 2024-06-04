@@ -41,7 +41,7 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v4
 
-        - name: Create Pull Request
+        - name: Merge Pull Request
           id: create_pr
           env:
             GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
