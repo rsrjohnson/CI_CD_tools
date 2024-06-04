@@ -49,7 +49,7 @@ response = requests.request(
     headers=headers
     )
 
-
+print(response)
 
 # If a pull request already exists, print a message and exit
 if response.ok:
