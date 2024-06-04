@@ -25,7 +25,7 @@ jobs:
           env:
             GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
           run: |
-            if [[ -z gh pr list --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }}]]; then
+            if [[ -z $(gh pr list --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }}) ]]; then
               gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}" --body ""
 
 
