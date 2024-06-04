@@ -45,9 +45,10 @@ jobs:
           run: | 
             echo "pr_number=$(python ci_cd_scripts/github_create_pr.py --repo_slug ${{ github.repository }} --auth_token ${{ secrets.MY_GH_TOKEN }} --source ${{ github.ref }} --destination ${{ vars.DESTINATION_BRANCH }})" >> $GITHUB_OUTPUT
 
+
         - name: Use Pull Request Number
           run: |
-            echo "The pull request number is ${{ steps.pr-number.outputs.pr_number }}"
+            echo "The pull request number is ${{ steps.create_pr.outputs.pr_number }}"
 
     trigger_tests:
     #name: unit_test
