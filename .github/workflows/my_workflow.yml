@@ -6,8 +6,8 @@ name: CI/CD Automatic Process
 on:
   push:
     branches: [ "feature/*"  ]
-  pull_request:
-    branches: [ "feature/*"  ]
+  # pull_request:
+  #   branches: [ "int-*"  ]
 
 
 jobs:
