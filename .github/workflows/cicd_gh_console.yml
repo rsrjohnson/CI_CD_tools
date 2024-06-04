@@ -25,27 +25,29 @@ jobs:
           env:
             GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
           run: |
-            PR_NUMBER=$(gh pr list --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --json number)
-            if [[ ! -z "$PR_NUMBER" ]]; then
-              gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}" --body ""
+            PR_NUMBER=$(gh pr list --state "open" --json number)
+            #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }}
+            echo "the pr number is: $PR_NUMBER"
+    #         if [[ ! -z "$PR_NUMBER" ]]; then
+    #           gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}" --body ""
 
 
-    merge_pull_request:
+    # merge_pull_request:
 
-      runs-on: ubuntu-latest
-      needs: create_pull_request
-      environment:
-        name: development
+    #   runs-on: ubuntu-latest
+    #   needs: create_pull_request
+    #   environment:
+    #     name: development
   
 
-      steps:
+    #   steps:
         
-        - name: Checkout code
-          uses: actions/checkout@v4
+    #     - name: Checkout code
+    #       uses: actions/checkout@v4
 
-        - name: Merge Pull Request
-          id: create_pr
-          env:
-            GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
-          run: |
-            gh pr merge ${{ vars.DESTINATION_BRANCH }}
+    #     - name: Merge Pull Request
+    #       id: create_pr
+    #       env:
+    #         GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
+    #       run: |
+    #         gh pr merge ${{ vars.DESTINATION_BRANCH }}
