@@ -19,8 +19,8 @@ SOURCE_BRANCH = args.source
 DESTINATION_BRANCH = args.destination
 
 
-print(SOURCE_BRANCH)
-print(DESTINATION_BRANCH)
+# print(SOURCE_BRANCH)
+# print(DESTINATION_BRANCH)
 
 
 def createPullRequest(url):
