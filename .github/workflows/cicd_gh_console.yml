@@ -27,4 +27,4 @@ jobs:
         - name: Create Pull Request
           id: create_pr
           run: |
-            gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}
+            gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}"
