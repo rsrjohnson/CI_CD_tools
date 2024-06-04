@@ -25,7 +25,7 @@ jobs:
           env:
             GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
           run: |
-            PR_NUMBER=$(gh pr list --state "open" --json number -jq -r '.number')
+            PR_NUMBER=$(gh pr list --state "open" --json number --jq -r '.number')
             #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }}
             echo "the pr number is: $PR_NUMBER"
     #         if [[ ! -z "$PR_NUMBER" ]]; then
