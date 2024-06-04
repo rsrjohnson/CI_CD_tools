@@ -46,7 +46,7 @@ jobs:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - name: Checkout code
           uses: actions/checkout@v4
-          
+
         - name: Create Pull Request
           id: create_pr
           run: |
@@ -85,4 +85,4 @@ jobs:
           env:
             PR_NUMBER: ${{needs.create_pull_request.outputs.pr_number}}
           run: |
-            python python_scripts/merge_pr.py --repo_slug ${{ github.repository }} --pr_numb $PR_NUMBER --auth_token ${{ secrets.MY_GH_TOKEN }}
+            python ci_cd_scripts/github_merge_pr.py --repo_slug ${{ github.repository }} --pr_numb $PR_NUMBER --auth_token ${{ secrets.MY_GH_TOKEN }}
