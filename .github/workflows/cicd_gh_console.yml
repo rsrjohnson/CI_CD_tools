@@ -52,5 +52,5 @@ jobs:
           env:
             GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
           run: |
-            PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
+            PR_NUMBER=${{ github.event.pull_request.number }} #$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
             gh pr merge $PR_NUMBER --merge
