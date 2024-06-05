@@ -16,7 +16,7 @@ jobs:
         output1: ${{ steps.step1.outputs.test }}  
       steps:
         - id: step1
-          run: echo "test=hello" >> $GITHUB_OUTPUT
+          run: echo "test=int-dev" >> $GITHUB_OUTPUT
  
     create_pull_request:
       needs: job1 
