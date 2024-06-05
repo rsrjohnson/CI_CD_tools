@@ -13,18 +13,13 @@ jobs:
       runs-on: ubuntu-latest
       # Map a step output to a job output
       outputs:
-        output1: ${{ steps.step1.outputs.test }}
-        output2: ${{ steps.step2.outputs.test }}
+        output1: ${{ steps.step1.outputs.test }}  
       steps:
         - id: step1
-          run: echo "test=hello" >> "$GITHUB_OUTPUT"
-        - id: step2
-          run: echo "test=world" >> "$GITHUB_OUTPUT"
-
-  
+          run: echo "test=int-dev" >> $GITHUB_OUTPUT
+ 
     create_pull_request:
-      needs: job1
-      if: ${{ needs.job1.outputs.output1 }} == "int-dev"     
+      needs: job1 
       runs-on: ubuntu-latest
       environment:
         name: development
@@ -38,13 +33,17 @@ jobs:
           id: create_pr
           env:
             GH_TOKEN: ${{ github.token }}
+            deploy_branch: ${{needs.job1.outputs.output1}}
+             
           run: |
-            PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
-            #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} .[0].number --jq 'length > 0'
-            if [[ -n "$PR_NUMBER" ]]; then
-              echo "PR from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }} already exists with #$PR_NUMBER"
-            else
-              gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}" --body-file ./.github/pr_template.md
+            if [[ $deploy_branch == "int-dev" ]]; then   
+              PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
+              #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} .[0].number --jq 'length > 0'
+              if [[ -n "$PR_NUMBER" ]]; then
+                echo "PR from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }} already exists with #$PR_NUMBER"
+              else
+                gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}" --body-file ./.github/pr_template.md
+              fi
             fi
 
 
