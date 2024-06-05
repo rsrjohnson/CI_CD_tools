@@ -26,7 +26,7 @@ jobs:
           if: |
             ${{ vars.DESTINATION_BRANCH }} == int-dev
           run: |
-            echo "$(${{ vars.DESTINATION_BRANCH }} == int-dev)"
+            echo ${{ vars.DESTINATION_BRANCH }} == int-dev
             PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
             #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} .[0].number --jq 'length > 0'
             if [[ -n "$PR_NUMBER" ]]; then
