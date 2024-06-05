@@ -12,18 +12,18 @@ jobs:
     job0:
       runs-on: ubuntu-latest
       outputs:
-        deploy_branch: ${{ steps.set_var.outputs.deploy_branch }}
+        deploy_branch: ${{ steps.set_var.outputs.deployment_branch }}
       steps:
         - name: setting_var
           id: set_var
           run: |
-            echo "deploy_branch='no-int-dev'" >> $GITHUB_OUTPUT
-            echo "deploy_branch: $deploy_branch"
+            echo "deployment_branch=$("no-int-dev")" >> $GITHUB_OUTPUT
+            echo "deployment_branch: $deployment_branch"
 
   
     create_pull_request:
       needs: job0
-      if: ${{ needs.job0.outputs.deploy_branch}}=="int-dev"     
+      if: ${{ needs.job0.outputs.deploy_branch }} == "int-dev"     
       runs-on: ubuntu-latest
       environment:
         name: development
