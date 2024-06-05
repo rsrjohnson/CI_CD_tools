@@ -8,23 +8,13 @@ on:
 
 
 jobs: 
-
-    job1:
-      runs-on: ubuntu-latest
-      # Map a step output to a job output
-      outputs:
-        output1: ${{ steps.step1.outputs.test }}  
-      steps:
-        - id: step1
-          run: echo "test=int-dev" >> $GITHUB_OUTPUT
  
     create_pull_request:
-      needs: job1 
       runs-on: ubuntu-latest
       environment:
         name: development
       
-      if: ${{ needs.job1.outputs.output1 }} == false
+      if: ${{ vars.DESTINATION_BRANCH }} == "no-int-dev"
       steps:
 
         - name: Checkout code
