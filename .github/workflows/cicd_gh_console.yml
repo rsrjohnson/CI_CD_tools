@@ -55,4 +55,5 @@ jobs:
             PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
             echo "PR_NUMBER: $PR_NUMBER"
             gh pr merge $PR_NUMBER --merge
+            echo "PR #$PR_NUMBER successfully merged."
             
