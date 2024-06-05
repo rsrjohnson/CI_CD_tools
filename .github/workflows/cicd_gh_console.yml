@@ -9,21 +9,22 @@ on:
 
 jobs: 
 
-    job0:
+    job1:
       runs-on: ubuntu-latest
+      # Map a step output to a job output
       outputs:
-        deploy_branch: ${{ steps.set_var.outputs.deployment_branch }}
+        output1: ${{ steps.step1.outputs.test }}
+        output2: ${{ steps.step2.outputs.test }}
       steps:
-        - name: setting_var
-          id: set_var
-          run: |
-            echo "deployment_branch=hello" >> $GITHUB_OUTPUT
-            echo "deployment_branch: $deployment_branch"
+        - id: step1
+          run: echo "test=hello" >> "$GITHUB_OUTPUT"
+        - id: step2
+          run: echo "test=world" >> "$GITHUB_OUTPUT"
 
   
     create_pull_request:
-      needs: job0
-      if: ${{ needs.job0.outputs.deploy_branch }} == "int-dev"     
+      needs: job1
+      if: ${{ needs.job1.outputs.output1 }} == "int-dev"     
       runs-on: ubuntu-latest
       environment:
         name: development
