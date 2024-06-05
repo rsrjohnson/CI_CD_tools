@@ -23,7 +23,7 @@ jobs:
         - name: Create Pull Request
           id: create_pr
           env:
-            GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
+            GH_TOKEN: ${{ github.token }}
           run: |
             PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
             #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} .[0].number --jq 'length > 0'
@@ -52,6 +52,6 @@ jobs:
           env:
             GH_TOKEN: ${{ github.token }} 
           run: |
-            PR_NUMBER=${{ github.event.pull_request.number }}
+            PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
             echo "PR_NUMBER: $PR_NUMBER"
             gh pr merge $PR_NUMBER --merge
