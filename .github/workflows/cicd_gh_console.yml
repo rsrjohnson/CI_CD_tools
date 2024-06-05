@@ -23,7 +23,8 @@ jobs:
       runs-on: ubuntu-latest
       environment:
         name: development
-  
+      
+      if: true == false
       steps:
 
         - name: Checkout code
@@ -34,7 +35,6 @@ jobs:
           env:
             GH_TOKEN: ${{ github.token }}
             deploy_branch: ${{needs.job1.outputs.output1}}
-          if: true == false
           run: |
             PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
             #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} .[0].number --jq 'length > 0'
