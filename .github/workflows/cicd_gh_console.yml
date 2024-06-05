@@ -9,12 +9,11 @@ on:
 
 jobs: 
   
-    create_pull_request:    
+    create_pull_request:
+      if: true == true      
       runs-on: ubuntu-latest
       environment:
         name: development
-      if: |
-        ${{ vars.DESTINATION_BRANCH }} == no-int-dev  
   
       steps:
 
