@@ -10,7 +10,7 @@ on:
 jobs: 
   
     create_pull_request:
-      if: true == true      
+      if: false == true      
       runs-on: ubuntu-latest
       environment:
         name: development
