@@ -17,7 +17,7 @@ jobs:
         - name: setting_var
           id: set_var
           run: |
-            echo "deploy_branch=no-int-dev" >> $GITHUB_OUTPUT
+            echo "deploy_branch='no-int-dev'" >> $GITHUB_OUTPUT
             echo "deploy_branch: $deploy_branch"
 
   
