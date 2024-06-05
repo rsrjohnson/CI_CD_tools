@@ -9,8 +9,7 @@ on:
 
 jobs: 
   
-    create_pull_request:
-
+    create_pull_request:    
       runs-on: ubuntu-latest
       environment:
         name: development
@@ -24,6 +23,8 @@ jobs:
           id: create_pr
           env:
             GH_TOKEN: ${{ github.token }}
+          if: |
+            ${{ vars.DESTINATION_BRANCH }} == int-dev
           run: |
             PR_NUMBER=$(gh pr list --state "open" --head "${{ github.ref_name }}" --base "${{ vars.DESTINATION_BRANCH }}" --json number --jq '.[0].number')
             #--head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} .[0].number --jq 'length > 0'
