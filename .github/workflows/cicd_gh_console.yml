@@ -30,7 +30,7 @@ jobs:
             if [[ -n "$PR_NUMBER" ]]; then
               echo "PR from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }} already exists with #$PR_NUMBER"
             else
-              gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}" --body ""
+              gh pr create --head ${{ github.ref_name }} --base ${{ vars.DESTINATION_BRANCH }} --title "Pull request from ${{ github.ref_name }} to ${{ vars.DESTINATION_BRANCH }}" --body-file ./.github/pr_template.md
             fi
 
 
