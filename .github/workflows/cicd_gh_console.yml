@@ -8,9 +8,22 @@ on:
 
 
 jobs: 
+
+    job0:
+      runs-on: ubuntu-latest
+      outputs:
+        deploy_branch: ${{ steps.set_var.outputs.deploy_branch }}
+      steps:
+        - name: setting_var
+          id: set_var
+          run: |
+            echo "deploy_branch=no-int-dev" >> $GITHUB_OUTPUT
+
   
     create_pull_request:
-      if: true == true      
+      needs: job0
+      if: |
+        ${{ needs.job0.outputs.deploy_branch}} ==  int-dev     
       runs-on: ubuntu-latest
       environment:
         name: development
