@@ -24,7 +24,7 @@ jobs:
       environment:
         name: development
       
-      if: true == false
+      if: ${{ needs.job1.outputs.output1 }} == false
       steps:
 
         - name: Checkout code
