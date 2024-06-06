@@ -23,11 +23,11 @@ jobs:
           run: |
             RELEASE_BRANCH_NAME="release/prefix-whatever-1.0"
             RELEASE_SCRIPT="${RELEASE_BRANCH_NAME#release/}"
-            echo "RELEASE_SCRIPT:$RELEASE_SCRIPT"
+            echo "RELEASE_SCRIPT:$RELEASE_SCRIPT" >> $GITHUB_OUTPUT
 
         - name: Use Name
           run: |
-            echo "RELEASE_SCRIPT:$RELEASE_SCRIPT"
+            echo "RELEASE_SCRIPT:${{ steps.replacement.outputs.RELEASE_SCRIPT }}"
  
     create_pull_request:
       runs-on: ubuntu-latest
