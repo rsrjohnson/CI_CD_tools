@@ -23,7 +23,7 @@ jobs:
           run: |
             RELEASE_BRANCH_NAME="release/prefix-whatever-1.0"
             RELEASE_SCRIPT="${RELEASE_BRANCH_NAME#release/}"
-            echo "RELEASE_SCRIPT:$RELEASE_SCRIPT" >> $GITHUB_OUTPUT
+            echo "RELEASE_SCRIPT=$RELEASE_SCRIPT" >> $GITHUB_OUTPUT
 
         - name: Use Name
           run: |
