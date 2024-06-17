@@ -11,7 +11,7 @@ on:
 
 jobs: 
 
-    try_replacement:
+    print_event:
       runs-on: ubuntu-latest
       environment:
         name: development
