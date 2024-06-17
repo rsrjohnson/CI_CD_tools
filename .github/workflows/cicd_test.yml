@@ -20,6 +20,5 @@ jobs:
 
         - name: Print PR
           run: |
-            echo  "PR #"
-            echo  ${{ github.event.pull_request.number }}
+            echo  "/PR_${{ github.event.pull_request.number }}"
            
