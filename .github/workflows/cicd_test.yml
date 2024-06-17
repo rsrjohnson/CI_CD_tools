@@ -1,0 +1,22 @@
+name: CI/CD Debug
+
+on:
+  pull_request:
+    branches: int-**
+
+
+jobs: 
+
+    try_replacement:
+      runs-on: ubuntu-latest
+      environment:
+        name: development
+      steps:
+
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Print PR
+          run: |
+            echo  ${{ github.event.pull_request.number }}
+           
