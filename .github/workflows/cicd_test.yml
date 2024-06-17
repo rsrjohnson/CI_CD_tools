@@ -2,15 +2,17 @@ name: CI/CD Debug
 
 on:
   pull_request:
-    branches: int-**
+    types:
+      - opened
+      - synchronize
+    branches: 
+      - int-**
 
 
 jobs: 
 
-    try_replacement:
+    print_event:
       runs-on: ubuntu-latest
-      environment:
-        name: development
       steps:
 
         - name: Checkout code
@@ -18,5 +20,5 @@ jobs:
 
         - name: Print PR
           run: |
-            echo  ${{ github.event.pull_request.number }}
+            echo  "/PR_${{ github.event.pull_request.number }}"
            
