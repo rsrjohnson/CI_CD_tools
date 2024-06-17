@@ -2,7 +2,11 @@ name: CI/CD Debug
 
 on:
   pull_request:
-    branches: int-**
+    types:
+      - opened
+      - synchronize
+    branches: 
+      - int-**
 
 
 jobs: 
