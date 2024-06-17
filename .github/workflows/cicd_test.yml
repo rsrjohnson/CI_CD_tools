@@ -2,7 +2,7 @@ name: CI/CD Debug
 
 on:
   pull_request:
-    branches: [ "int-*"  ]
+    branches: int-**
 
 
 jobs: 
