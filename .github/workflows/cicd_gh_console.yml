@@ -2,7 +2,7 @@ name: CI/CD Automatic Process
 
 on:
   push:
-    branches: [ "unactive/*"  ] #[ "feature/*"  ]
+    branches: [ "feature/*"  ]
   # pull_request:
   #   branches: [ "int-*"  ]
 
