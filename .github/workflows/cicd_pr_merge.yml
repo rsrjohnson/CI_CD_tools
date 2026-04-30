@@ -3,15 +3,16 @@ name: CI/CD Debug
 on:
   pull_request:
     types:
-      - opened
-      - synchronize
+      - closed
     branches: 
       - int-**
+      - main
 
 
 jobs: 
 
     print_event:
+      if: github.event.pull_request.merged == true
       runs-on: ubuntu-latest
       steps:
 
@@ -20,5 +21,5 @@ jobs:
 
         - name: Print PR
           run: |
-            echo  "/PR_${{ github.event.pull_request.number }}"
+            echo  "/PR_${{ github.event.pull_request.number }} was merged."
            
