@@ -1,4 +1,4 @@
-name: CI/CD Debug
+name: CI/CD Debug PR Merged
 
 on:
   pull_request:
