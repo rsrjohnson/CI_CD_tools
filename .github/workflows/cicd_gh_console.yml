@@ -16,7 +16,7 @@ jobs:
       steps:
 
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
 
         - name: Try Replace
           id: replacement
@@ -65,7 +65,7 @@ jobs:
       steps:
         
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
 
         - name: Merge Pull Request
           id: create_pr

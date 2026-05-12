@@ -45,7 +45,7 @@ jobs:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
 
         - name: Create Pull Request
           id: create_pr
@@ -66,7 +66,7 @@ jobs:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
 
         - name: Run tests
           run: |
@@ -79,7 +79,7 @@ jobs:
 
       steps:
         - name: Checkout code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
 
         - name: Merge Pull Request  
           env:
